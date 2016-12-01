@@ -5,11 +5,8 @@ import theano.tensor as T
 
 def warp_loss(prediction, target_var):
 
-    print('123')
     true_label = np.argmax(target_var) #theano.tensor.where
     predicted_label = np.argmax(prediction)
-
-    print('123')
 
     # diem cua nhan dung
     f_y = T.cast(prediction[true_label], 'float32')
@@ -27,13 +24,13 @@ def warp_loss(prediction, target_var):
         temp = T.cast(false_prediction[i], 'float32')
     #   false_prediction = np.delete(false_prediction, i)
         N += 1
-        if T.gt(temp + 1, f_y):
+        if T.gt(temp + 0.01, f_y):
             rank = np.int_(np.floor(Y/N))
             # add trong so L(rank)
             L_rank = 0
             for i in range(rank):
                 L_rank += 1/(i+1)
-            err += L_rank*(temp + 1 - f_y)
+            err += L_rank*(temp + 0.01 - f_y)
             break
         if N > Y - 1:
             break
