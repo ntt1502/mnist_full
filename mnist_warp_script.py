@@ -6,10 +6,13 @@ import numpy as np
 import theano
 import theano.tensor as T
 import lasagne
+import matplotlib.cm
 
 import load_data_mat as ldm
 import cnn
+
 import warp_theano_function
+import matplotlib.pyplot as plt
 
 def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
     assert len(inputs) == len(targets)
@@ -31,7 +34,7 @@ def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
 
     # Load the dataset
 model = 'mlp'
-num_epochs = 4
+num_epochs = 3
 print("Loading data...")
 X_train, y_train, X_val, y_val, X_test, y_test = ldm.load_dataset()
 
@@ -131,3 +134,11 @@ print("  test loss:\t\t\t{:.6f}".format(test_err / test_batches))
 print("  test accuracy:\t\t{:.2f} %".format(
     test_acc / test_batches * 100))
 
+#while True:
+#    raw_input("Press Enter to continue...")
+#    i = np.random.randint(10000)
+#    img = X_test[i, 0, :, :]
+#    print('True label: ', y_test[i])
+#    plt.imshow(img, cmap = matplotlib.cm.Greys_r)
+#    plt.show()
+#    time.sleep(60)

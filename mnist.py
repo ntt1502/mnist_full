@@ -105,6 +105,8 @@ def main(model='mlp', num_epochs=4):
     print("  test accuracy:\t\t{:.2f} %".format(
         test_acc / test_batches * 100))
 
+
+
 if __name__ == '__main__':
     if ('--help' in sys.argv) or ('-h' in sys.argv):
         print("Trains a neural network on MNIST using Lasagne.")
